@@ -5,7 +5,7 @@ metadata:
   namespace: shiori
 spec:
   enableSuperuserAccess: false
-  instances: 2
+  instances: 1
   bootstrap:
     initdb:
       database: shiori

@@ -12,6 +12,11 @@ spec:
         revision: HEAD
         directories:
           - path: 'packages/*'
+    - git:
+        repoURL: https://github.com/christophenne/shiori
+        revision: HEAD
+        directories:
+          - path: 'apps/*'
   template:
     metadata:
       name: '{{ .path.basename }}'

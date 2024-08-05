@@ -11,7 +11,7 @@ spec:
       database: shiori
       owner: shiori
       secret:
-        name: shiori-db
+        name: shiori
   storage:
     size: 2Gi
   monitoring:

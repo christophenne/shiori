@@ -1,14 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: glasskube
-  namespace: argocd
+  name: shiori
 spec:
   destination:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: bootstrap/glasskube
+    path: demo/go-shiori
     repoURL: https://github.com/christophenne/shiori
     targetRevision: HEAD
   syncPolicy:

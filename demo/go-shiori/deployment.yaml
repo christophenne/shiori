@@ -39,4 +39,4 @@ spec:
             - name: HTTP_ROOT_PATH
               value: "/shiori"
             - name: SHIORI_DATABASE_URL
-              value: "postgres://shiori:shiori@shiori-db/database?sslmode=verify-full"
+              value: "postgres://shiori@shiori/database?sslmode=verify-full"

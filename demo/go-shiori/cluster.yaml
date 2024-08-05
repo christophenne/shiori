@@ -2,6 +2,7 @@ kind: Cluster
 apiVersion: postgresql.cnpg.io/v1
 metadata:
   name: postgres
+  namespace: shiori
 spec:
   enableSuperuserAccess: false
   instances: 2

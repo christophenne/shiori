@@ -6,9 +6,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - http:
+    - host: my-shiori.example
+      http:
         paths:
-          - path: /shiori
+          - path: /
             pathType: Prefix
             backend:
               service:

@@ -26,17 +26,23 @@ spec:
       containers:
         - name: shiori
           image: ghcr.io/go-shiori/shiori:latest
-          command: ["/usr/bin/shiori", "serve", "--webroot", "/shiori"]
-          imagePullPolicy: Always
+          command: ["/usr/bin/shiori", "server"]
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           volumeMounts:
             - mountPath: /srv/shiori
               name: app
+          envFrom:
+            - secretRef:
+                name: postgres-app
           env:
             - name: SHIORI_DIR
               value: /srv/shiori
-            - name: HTTP_ROOT_PATH
-              value: "/shiori"
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-app
+                  key: password
             - name: SHIORI_DATABASE_URL
-              value: "postgres://shiori:shiori@postgres/shiori?sslmode=verify-full"
+              value: "postgres://shiori:$(DB_PASS)@postgres-rw/shiori"

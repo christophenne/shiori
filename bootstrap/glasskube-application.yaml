@@ -8,7 +8,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: bootstrap/glasskube
+    path: bootstrap
     repoURL: https://github.com/christophenne/shiori
     targetRevision: HEAD
   syncPolicy:

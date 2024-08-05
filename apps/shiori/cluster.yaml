@@ -10,8 +10,6 @@ spec:
     initdb:
       database: shiori
       owner: shiori
-      secret:
-        name: shiori
   storage:
     size: 2Gi
   monitoring:

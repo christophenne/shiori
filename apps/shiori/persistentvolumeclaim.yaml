@@ -4,7 +4,6 @@ metadata:
   name: shiori-data
   namespace: shiori
 spec:
-  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:

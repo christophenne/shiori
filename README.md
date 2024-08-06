@@ -1,6 +1,6 @@
-# glasskube-argocd-starter
+# gitops-template
 
-Use this repository as a template to get started with the ArgoCD & Glasskube in seconds instead of hours.
+Use this repository as a template to get started with ArgoCD & Glasskube in seconds instead of hours.
 
 ## Getting Started
 
@@ -42,7 +42,7 @@ Replace the default value of `repoURL` to your repository url.
 - Line 12 in: [`bootstrap/glasskube-application.yaml`](bootstrap/glasskube-application.yaml#L12)
 - Line 11 and 21 in: [`bootstrap/glasskube/applicationset.yaml`](bootstrap/glasskube/applicationset.yaml#L11-L21)
 
-#### 3. Bootstrap ArgoCD and Glasskube for your Kubernetes cluster (blocked by: [#1050](https://github.com/glasskube/glasskube/pull/1050))
+#### 3. Bootstrap ArgoCD and Glasskube for your Kubernetes cluster
 
 Make sure you are connected to the right cluster and execute:
 
@@ -61,6 +61,9 @@ but of course you can also use the Argo CLI.
 Follow the [ArgoCD docs](https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli) to get and reset the password to log in.
 
 Note that it might take a couple of minutes to start up ArgoCD, and for the initial GitOps sync to happen. 
+
+In this template, for demonstration purposes we also install the `cloudnative-pg` clusterpackage and a bookmarking 
+application ([shiori](https://github.com/go-shiori/shiori)), which is making use of `cloudnative-pg`. 
 
 #### Optional: Temporary: Making your repo private
 
@@ -149,11 +152,24 @@ glasskube bootstrap --dry-run -o yaml --force > bootstrap/glasskube/glasskube.ya
 to update the Glasskube manifests in your git repo. After reviewing and merging those changes the update will be picked up
 by ArgoCD. The `--force` flag is necessary for the command to continue manifest validation, even though failures occur. 
 
+### Working with Apps
+
+This template also contains a demo application: a bookmark manager called [shiori](https://github.com/go-shiori/shiori).
+Its manifests are defined in `apps/shiori`, which is a pattern you can follow for your own custom applications.
+
+In a minikube environment, two manual steps are required to access the application (for more information consult the 
+[minikube docs](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/)):
+* Run `minikube addons enable ingress`.
+* Run `minikube ip` and add the line `<your-IP> my-shiori.example` to your `/etc/hosts` file. 
+
+
+
 ## Repository Structure
 
 Initially, this repository will come with
 * a `bootstrap` directory containing the initial/parent Argo `Application`, and the necessary Glasskube manifests
 * a `packages` directory containing the `argo-cd` cluster package. 
+* an `apps` directory containing your applications. 
 * the renovate configuration in `renovate.json`. 
 
 Glasskube custom resources will only be picked up by Argo when being put inside the `packages` directory. Please do not

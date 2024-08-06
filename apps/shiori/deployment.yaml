@@ -16,11 +16,6 @@ spec:
         app: shiori
     spec:
       securityContext:
-        allowPrivilegeEscalation: false
-        capabilities:
-          drop:
-            - ALL
-        readOnlyRootFilesystem: true
         runAsNonRoot: true
         runAsUser: 1000
       volumes:
